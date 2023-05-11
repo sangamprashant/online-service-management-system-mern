@@ -234,5 +234,20 @@ router.get('/api/admin/requests/unassigned', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+//find the requst to assign the technician
+// Find request by ID
+router.get("/api/requests/:requestId", (req, res) => {
+  OSMSREQUEST.findById(req.params.requestId)
+    .populate("requestedBy", "_id name email")
+    .then((request) => {
+      if (!request) {
+        return res.status(404).json({ error: "Request not found" });
+      }
+      res.json(request);
+    })
+    .catch((err) => {
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
 
 module.exports = router;

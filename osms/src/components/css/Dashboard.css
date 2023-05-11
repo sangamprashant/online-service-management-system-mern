@@ -443,3 +443,27 @@ nav .profile-details i{
   border: none;
   margin: 0px 3px ;
 }
+
+
+
+@media print {
+  body {
+    font-size: 12pt;
+    color: black;
+  }
+  .no-print {
+    display: none;
+  }
+  @page {
+    size: auto;
+    margin: 1cm;
+  }
+  @media print {
+  .sidebar,.logo-details,.nav-links {
+      display: none;
+    }
+    #print-section {
+      display: block !important;
+    }
+  }
+}
