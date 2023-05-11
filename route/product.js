@@ -16,7 +16,11 @@ const requireLoginAdmin = require("../middleware/requireLoginAdmin")
 // POST request to create a new product
 router.post('/api/add/products', async (req, res) => {
     const { name, DOP, Total, OCE, SPE,}=req.body
+    if(!name|| !DOP|| !Total|| !OCE|| !SPE){
+      return res.status(500).json({ error: 'Please enter all the fields' });
+    }
     try {
+      
       const newProduct = new OSMSPRODUCT({
         name,
         DOP,
@@ -27,10 +31,9 @@ router.post('/api/add/products', async (req, res) => {
       });
   
       const savedProduct = await newProduct.save();
-      res.status(200).json({ message: ' Product Added Succesfully' });
+      return res.status(200).json({ message: ' Product Added Succesfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+      return res.status(500).json({ message: 'Server error' });
     }
   });
 
@@ -42,6 +45,20 @@ router.get('/api/admin/products', async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
+  }
+});
+// Delete product by ID
+router.delete('/api/products/:id', async (req, res) => {
+  const productId = req.params.id;
+  try {
+    const deletedProduct = await OSMSPRODUCT.findByIdAndDelete(productId);
+    if (!deletedProduct) {
+      res.status(200).json({ error: ' Product  Not Found' });
+    } else {
+      res.status(200).json({ message: ' Product Deleted Succesfully' });
+    }
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
   module.exports = router;

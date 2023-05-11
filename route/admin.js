@@ -203,7 +203,7 @@ router.post("/api/admin/user/add", async (req, res) => {
 
     const savedUser = await userec.save();
     if (savedUser) {
-      return res.json({ message: "Registered successfully" });
+      return res.json({ message: "User Registered successfully" });
     }
   } catch (err) {
     console.log(err);
@@ -211,11 +211,11 @@ router.post("/api/admin/user/add", async (req, res) => {
   }
 });
 // Delete a user by ID
-router.delete('/users/:userId', async (req, res) => {
+router.delete('/api/user/delete/:userId', async (req, res) => {
   const userId = req.params.userId;
 
   try {
-    const deletedUser = await User.findOneAndDelete({ _id: userId });
+    const deletedUser = await OSMSUSER.findOneAndDelete({ _id: userId });
     if (!deletedUser) {
       return res.status(404).send({ error: 'User not found' });
     }

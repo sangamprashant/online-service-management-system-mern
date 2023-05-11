@@ -437,3 +437,9 @@ nav .profile-details i{
     width: calc(100% - 60px);
   }
 }
+
+
+.Product-button{
+  border: none;
+  margin: 0px 3px ;
+}

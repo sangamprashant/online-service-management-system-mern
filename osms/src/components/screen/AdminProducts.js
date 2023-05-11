@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import Delete from "./button/Delete";
+import HandShake from "./button/HandShake";
+import ViewComponent from "./button/ViewComponent";
 
 function AdminProducts({ setTitle }) {
   //add product
@@ -23,24 +25,26 @@ function AdminProducts({ setTitle }) {
   useEffect(() => {
     setTitle("Assets");
   });
-
-//get data fron server 
-useEffect(() => {
- if(!model){
-  fetch("http://localhost:5000/api/admin/products", {
-        method: "get"
+ 
+  const handleDelete = (productId) => {
+    if(!model){
+      fetch(`http://localhost:5000/api/products/${productId}`, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
       })
-        .then((res) => res.json())
-        .then((products) => {
-          if (products.error) {
-            notifyA(products.error);
-          } else {
-            setProducts(products);
-          }
-        });
- }
-});
-
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          notifyB(data.message);
+        } else {
+          notifyA(data.error);
+        }
+      });
+    }
+  };
 
   const postDetails = () => {
     fetch("http://localhost:5000/api/add/products", {
@@ -53,7 +57,7 @@ useEffect(() => {
         name,
         Total,
         DOP,
-        OCE:OEC,
+        OCE: OEC,
         SPE,
       }),
     })
@@ -67,15 +71,33 @@ useEffect(() => {
       });
   };
 
+  //get data fron server
+  useEffect(() => {
+    if (!model) {
+      fetch("http://localhost:5000/api/admin/products", {
+        method: "get",
+      })
+        .then((res) => res.json())
+        .then((products) => {
+          if (products.error) {
+            notifyA(products.error);
+          } else {
+            setProducts(products);
+          }
+        });
+    }
+  }, [model,postDetails,handleDelete]);
+
   return (
     <div>
       <div class="container">
         <div class="panel panel-primary dialog-panel">
           <div class="panel-heading">
-            <h5>Products</h5>
-          </div>
-          <div class="panel-body">
-            <button
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div class="title">List of Requesters</div>
+            <div>
+              {" "}
+              <button
               type="button"
               class="btn-lg btn-danger"
               onClick={() => {
@@ -84,6 +106,9 @@ useEffect(() => {
             >
               {!model ? "Add Product" : "Cancel"}
             </button>
+            </div>
+            </div>
+            </div>
             <hr />
             {model ? (
               <form class="form-horizontal" role="form">
@@ -130,7 +155,13 @@ useEffect(() => {
                             selected={startDate}
                             onChange={(date) => {
                               setStartDate(date);
-                              setDOP(date);
+                              setDOP(
+                                new Intl.DateTimeFormat("en-US", {
+                                  year: "numeric",
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                }).format(date)
+                              );
                             }}
                             dateFormat="dd/MM/yyyy"
                             required
@@ -238,132 +269,149 @@ useEffect(() => {
                 </div>
               </form>
             ) : (
-             <div>
-
-
-             <div class="sales-boxes" style={{marginRight:"5%"}}>
-          <div class="recent-sales box">
-            <div class="title">List of Products</div>
-            <div class="sales-details">
-              <ul class="details">
-                <li class="topic">Name</li>
-                {products.length !== 0
-                  ? products.map((product) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={product._id}>
-                            <a>{product.name}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">DOP</li>
-                {products.length !== 0
-                  ? products.map((product) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={product._id}>
-                            <a>{product.DOP}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Avilable</li>
-                {products.length !== 0
-                  ? products.map((product) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={product._id}>
-                            <a>{product.Available}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Total</li>
-                {products.length !== 0
-                  ? products.map((products) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={products._id}>
-                            <a>{products.Total}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">OC</li>
-                {products.length !== 0
-                  ? products.map((product) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={product._id}>
-                            <a>{product.OCE}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">SP</li>
-                {products.length !== 0
-                  ? products.map((product) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={products._id}>
-                            <a>{product.SPE}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Action</li>
-                {products.length !== 0
-                  ? products.map((products) => {
-                      return (
-                        <>
-                          <hr />
-                          <div style={{display:'flex',justifyContent:"sapce-around"}}>
-                          <button type="button" ><Delete/></button>
-                          <button type="button">E</button>
-                          <button type="button">E</button>
-                          </div>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-
-                
-             </div>
+              <div>
+                <div class="sales-boxes" style={{ marginRight: "5%" }}>
+                  <div class="recent-sales box">
+                    <div class="title">List of Products</div>
+                    <div class="sales-details">
+                      <ul class="details">
+                        <li class="topic">Name</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={product._id}>
+                                    <a>{product.name}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">DOP</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={product._id}>
+                                    <a>{product.DOP}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">Avilable</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={product._id}>
+                                    <a>{product.Available}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">Total</li>
+                        {products.length !== 0
+                          ? products.map((products) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={products._id}>
+                                    <a>{products.Total}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">OC</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={product._id}>
+                                    <a>{product.OCE}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">SP</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <li key={products._id}>
+                                    <a>{product.SPE}</a>
+                                  </li>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                      <ul class="details">
+                        <li class="topic">Action</li>
+                        {products.length !== 0
+                          ? products.map((product) => {
+                              return (
+                                <>
+                                  <hr />
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "sapce-around",
+                                    }}
+                                  >
+                                    <button
+                                      className=" Product-button "
+                                      type="button"
+                                      onClick={()=>{handleDelete(product._id)}}
+                                      
+                                    >
+                                      <Delete />
+                                    </button>
+                                    <button
+                                      className=" Product-button "
+                                      type="button"
+                                    >
+                                      <ViewComponent />
+                                    </button>
+                                    <button
+                                      className=" Product-button "
+                                      type="button"
+                                    >
+                                      <HandShake />
+                                    </button>
+                                  </div>
+                                </>
+                              );
+                            })
+                          : ""}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+   
   );
 }
 
