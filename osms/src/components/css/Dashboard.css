@@ -447,16 +447,12 @@ nav .profile-details i{
 
 
 @media print {
-  body {
-    font-size: 12pt;
-    color: black;
-  }
   .no-print {
     display: none;
   }
   @page {
     size: auto;
-    margin: 1cm;
+    margin: .1cm;
   }
   @media print {
   .sidebar,.logo-details,.nav-links {

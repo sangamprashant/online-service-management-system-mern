@@ -103,11 +103,8 @@ function AdminRequest({ setTitle }) {
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
+                        <div class="form-group internal">
+                          <h1 class="form-control" style={{ height: "auto" }}>
                             {ClickedRequest.reqInfo}
                           </h1>
                         </div>
@@ -123,11 +120,8 @@ function AdminRequest({ setTitle }) {
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
+                        <div class="form-group internal">
+                          <h1 class="form-control" style={{ height: "auto" }}>
                             {ClickedRequest.description}
                           </h1>
                         </div>
@@ -143,11 +137,8 @@ function AdminRequest({ setTitle }) {
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
+                        <div class="form-group internal">
+                          <h1 class="form-control" style={{ height: "auto" }}>
                             {ClickedRequest.name}
                           </h1>
                         </div>
@@ -163,22 +154,16 @@ function AdminRequest({ setTitle }) {
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-4">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "0 auto" }}
-                        >
-                          <h1 class="form-control">
+                        <div class="form-group internal">
+                          <h1 class="form-control" style={{ height: " auto" }}>
                             {ClickedRequest.address1}
                           </h1>
                         </div>
                       </div>
 
                       <div class="col-md-4 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
+                        <div class="form-group internal">
+                          <h1 class="form-control" style={{ height: "auto" }}>
                             {ClickedRequest.address2}
                           </h1>
                         </div>
@@ -193,22 +178,16 @@ function AdminRequest({ setTitle }) {
                       Contact
                     </label>
                     <div class="col-md-6">
-                    <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.email}
-                          </h1>
-                        </div>
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.mobile}
-                          </h1>
-                        </div>
+                      <div class="form-group internal">
+                        <h1 class="form-control" style={{ height: "auto" }}>
+                          {ClickedRequest.email}
+                        </h1>
+                      </div>
+                      <div class="form-group internal">
+                        <h1 class="form-control" style={{ height: "auto" }}>
+                          {ClickedRequest.mobile}
+                        </h1>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -221,14 +200,11 @@ function AdminRequest({ setTitle }) {
                       </label>
                       <div class="col-md-8">
                         <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.city}
-                          </h1>
-                        </div>
+                          <div class="form-group internal">
+                            <h1 class="form-control" style={{ height: "auto" }}>
+                              {ClickedRequest.city}
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -243,14 +219,11 @@ function AdminRequest({ setTitle }) {
                       </label>
                       <div class="col-md-8">
                         <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.state}
-                          </h1>
-                        </div>
+                          <div class="form-group internal">
+                            <h1 class="form-control" style={{ height: "auto" }}>
+                              {ClickedRequest.state}
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -265,14 +238,11 @@ function AdminRequest({ setTitle }) {
                       </label>
                       <div class="col-md-8">
                         <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.zip}
-                          </h1>
-                        </div>
+                          <div class="form-group internal">
+                            <h1 class="form-control" style={{ height: "auto" }}>
+                              {ClickedRequest.zip}
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -287,14 +257,30 @@ function AdminRequest({ setTitle }) {
                       </label>
                       <div class="col-md-8">
                         <div class="col-md-8 indent-small">
-                        <div
-                          class="form-group internal"
-                          style={{ height: "auto" }}
-                        >
-                          <h1 class="form-control">
-                            {ClickedRequest.date}
-                          </h1>
+                          <div class="form-group internal">
+                            <h1 class="form-control" style={{ height: "auto" }}>
+                              {ClickedRequest.date}
+                            </h1>
+                          </div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group internal">
+                      <label
+                        class="control-label col-md-2 col-md-offset-2"
+                        for="id_title"
+                      >
+                        Technecian
+                      </label>
+                      <div class="col-md-8">
+                        <div class="col-md-8 indent-small">
+                          <div class="form-group internal">
+                            <h1 class="form-control" style={{ height: "auto" }}>
+                              {ClickedRequest.technicianAlloc}
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -315,7 +301,10 @@ function AdminRequest({ setTitle }) {
                       <button
                         class="btn-lg btn-danger"
                         style={{ float: "right" }}
-                        type="submit"
+                        type="button"
+                        onClick={() => {
+                          setModel(true);
+                        }}
                       >
                         Cancel
                       </button>
