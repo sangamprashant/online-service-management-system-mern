@@ -19,6 +19,7 @@ import AdminDashBoardRequesters from "./components/screen/AdnimDashBoardElement/
 import AdminRequestersNavFetch from "./components/screen/AdminRequestersNavFetch";
 import AdminWorkOrder from "./components/screen/AdminWorkOrder";
 import AdminProducts from "./components/screen/AdminProducts";
+import AdminRequest from "./components/screen/AdminRequest";
 function App() {
   const [userLogin, setUserLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -59,6 +60,7 @@ function App() {
               <Route exact path="/admin/:name/dashboard" element={<AdminDashboard setTitle={setTitle} />}></Route>
               <Route exact path="/admin/:name/workorder" element={<AdminWorkOrder setTitle={setTitle} />}></Route>
               <Route exact path="/admin/:name/requestrs" element={<AdminRequestersNavFetch setTitle={setTitle} />}></Route>
+              <Route exact path="/admin/:name/request" element={<AdminRequest setTitle={setTitle} />}></Route>
               <Route exact path="/admin/:name/products" element={<AdminProducts setTitle={setTitle} />}></Route>
               <Route exact path="*" element={<PagenotFound setTitle={setTitle} />}></Route>
             </Routes>

@@ -25,7 +25,7 @@ function Navbr({ login,isAdmin }) {
               </Link>
             </li>
             <li>
-              <Link to={`/admin/${loggedUser.name}/requestrs`} >
+              <Link to={`/admin/${loggedUser.name}/request`} >
                 <i class="bx bx-user"></i>
                 <span class="links_name">Request</span>
               </Link>

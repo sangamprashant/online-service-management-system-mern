@@ -224,6 +224,15 @@ router.delete('/api/user/delete/:userId', async (req, res) => {
     res.status(500).send({ error: err.message });
   }
 });
-  
+//getting un assigned requests 
+router.get('/api/admin/requests/unassigned', async (req, res) => {
+  try {
+    const requests = await OSMSREQUEST.find({ technicianAlloc: null }).populate('requestedBy');
+    res.json(requests);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
