@@ -18,6 +18,7 @@ app.use(require("./route/admin"))
 app.use(require("./route/request"))
 app.use(require("./route/user"))
 app.use(require("./route/product"))
+app.use(require("./route/technician"))
 
 // connect to MongoDB
 mongoose.connect(process.env.MONGO_URL, {

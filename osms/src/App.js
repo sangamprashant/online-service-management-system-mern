@@ -20,6 +20,7 @@ import AdminRequestersNavFetch from "./components/screen/AdminRequestersNavFetch
 import AdminWorkOrder from "./components/screen/AdminWorkOrder";
 import AdminProducts from "./components/screen/AdminProducts";
 import AdminRequest from "./components/screen/AdminRequest";
+import AdminTechnicians from "./components/screen/AdminTechnicians";
 function App() {
   const [userLogin, setUserLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -33,21 +34,20 @@ function App() {
     <BrowserRouter>
     <LoginContext.Provider value={{ setUserLogin ,setIsAdmin }}>
       <div>
-        <div className={`sidebar ${active ? "active" : ""}`}>
+        <div className={`sidebar no-print ${active ? "active" : ""}`}>
           <Navbr  login={userLogin} isAdmin={isAdmin}/>
         </div>
-        <section class="home-section">
-          <nav>
-            <div className="sidebar-button">
+        <section class="home-section ">
+          <nav className="no-print">
+            <div className="sidebar-button no-print">
               <i
-                className={`bx ${active ? "bx-menu-alt-right" : "bx-menu"}`}
+                className={` no-print bx ${active ? "bx-menu-alt-right" : "bx-menu"}`}
                 onClick={handleSidebarClick}
               ></i>
-              <span className="dashboard">{title}</span>
+              <span className="dashboard no-print">{title}</span>
             </div>
           </nav>
-
-          <div class="home-content">
+          <div class="home-content" style={{display:'block'}}>
             <Routes>
               <Route exact path="/" element={<Home setTitle={setTitle} />}></Route> 
               <Route exact path="/:type/signup" element={<SignUp setTitle={setTitle} />}></Route>
@@ -62,6 +62,7 @@ function App() {
               <Route exact path="/admin/:name/requestrs" element={<AdminRequestersNavFetch setTitle={setTitle} />}></Route>
               <Route exact path="/admin/:name/request" element={<AdminRequest setTitle={setTitle} />}></Route>
               <Route exact path="/admin/:name/products" element={<AdminProducts setTitle={setTitle} />}></Route>
+              <Route exact path="/admin/:name/technicians" element={<AdminTechnicians setTitle={setTitle} />}></Route>
               <Route exact path="*" element={<PagenotFound setTitle={setTitle} />}></Route>
             </Routes>
             <ToastContainer theme="dark" />

@@ -27,7 +27,7 @@ function Navbr({ login,isAdmin }) {
             <li>
               <Link to={`/admin/${loggedUser.name}/request`} >
                 <i class="bx bx-user"></i>
-                <span class="links_name">Request</span>
+                <span class="links_name">Request Pending</span>
               </Link>
             </li>
             <li>
@@ -37,10 +37,10 @@ function Navbr({ login,isAdmin }) {
               </Link>
             </li>
             <li>
-              <a href="#">
+            <Link to={`/admin/${loggedUser.name}/technicians`}>
                 <i class="bx bx-heart"></i>
                 <span class="links_name">Technicians</span>
-              </a>
+              </Link>
             </li>
             <li>
               <Link to={`/admin/${loggedUser.name}/requestrs`}>
@@ -135,11 +135,11 @@ function Navbr({ login,isAdmin }) {
 
   return (
     <div>
-      <div class="logo-details">
+      <div class="logo-details no-print">
         <i class="bx bxl-c-plus-plus"></i>
         <span class="logo_name">OSMS</span>
       </div>
-      <ul class="nav-links">{loginStatus()}</ul>
+      <ul class="nav-links no-print">{loginStatus()}</ul>
     </div>
   );
 }

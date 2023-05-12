@@ -7,17 +7,16 @@ import Delete from "./button/Delete";
 import HandShake from "./button/HandShake";
 import ViewComponent from "./button/ViewComponent";
 
-function AdminProducts({ setTitle }) {
-  //add product
-  const [model, setModel] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+function AdminTechnicians({ setTitle }) {
+//model
+const [model,setModel]=useState(false)
+//technician add
   const [name, setName] = useState();
-  const [DOP, setDOP] = useState();
-  const [Total, setTotal] = useState();
-  const [OEC, setOEC] = useState();
-  const [SPE, setSPE] = useState();
+  const [email, setEmail] = useState();
+  const [mobile, setMobile] = useState();
+  const [city, setCity] = useState();
   //product from data base
-  const [products, setProducts] = useState([]);
+  const [Technicians, setTechnicians] = useState([]);
 
   // Toast functions
   const notifyA = (msg) => toast.error(msg);
@@ -26,9 +25,9 @@ function AdminProducts({ setTitle }) {
     setTitle("Assets");
   });
  
-  const handleDelete = (productId) => {
+  const handleDelete = (techniciansId) => {
     if(!model){
-      fetch(`http://localhost:5000/api/products/${productId}`, {
+      fetch(`http://localhost:5000/api/admin/delete/technicians/${techniciansId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +46,7 @@ function AdminProducts({ setTitle }) {
   };
 
   const postDetails = () => {
-    fetch("http://localhost:5000/api/add/products", {
+    fetch("http://localhost:5000/api/admin/add/technicians", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -55,10 +54,9 @@ function AdminProducts({ setTitle }) {
       },
       body: JSON.stringify({
         name,
-        Total,
-        DOP,
-        OCE: OEC,
-        SPE,
+        email,
+        city,
+        mobile
       }),
     })
       .then((res) => res.json())
@@ -74,15 +72,16 @@ function AdminProducts({ setTitle }) {
   //get data fron server
   useEffect(() => {
     if (!model) {
-      fetch("http://localhost:5000/api/admin/products", {
+      fetch("http://localhost:5000/api/admin/get/technicians", {
         method: "get",
       })
         .then((res) => res.json())
-        .then((products) => {
-          if (products.error) {
-            notifyA(products.error);
+        .then((technicians) => {
+          if (technicians) {
+            setTechnicians(technicians);
+           
           } else {
-            setProducts(products);
+            notifyA("Somethin went wrong");
           }
         });
     }
@@ -94,7 +93,7 @@ function AdminProducts({ setTitle }) {
         <div class="panel panel-primary dialog-panel">
           <div class="panel-heading">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div class="title">List of Products</div>
+            <div class="title">List of Technicians</div>
             <div>
               {" "}
               <button
@@ -104,7 +103,7 @@ function AdminProducts({ setTitle }) {
                 setModel(!model);
               }}
             >
-              {!model ? "Add Product" : "Cancel"}
+              {!model ? "Add Technician" : "Cancel"}
             </button>
             </div>
             </div>
@@ -117,7 +116,7 @@ function AdminProducts({ setTitle }) {
                     class="control-label col-md-2 col-md-offset-2"
                     for="id_title"
                   >
-                    Product Name
+                    Technician Name
                   </label>
                   <div class="col-md-8">
                     <div class="col-md-8 indent-small">
@@ -125,7 +124,7 @@ function AdminProducts({ setTitle }) {
                         <input
                           class="form-control"
                           id="id_first_name"
-                          placeholder="Product Name"
+                          placeholder="Technician Name"
                           type="text"
                           required
                           value={name}
@@ -137,40 +136,7 @@ function AdminProducts({ setTitle }) {
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="form-group internal">
-                    <label
-                      class="control-label col-md-2 col-md-offset-2"
-                      for="id_checkin"
-                    >
-                      Date of Production
-                    </label>
-                    <div class="col-md-8">
-                      <div class="col-md-8 indent-small">
-                        <div class="form-group internal">
-                          <DatePicker
-                            className="form-control"
-                            id="id_request_info"
-                            placeholderText="Request Info"
-                            selected={startDate}
-                            onChange={(date) => {
-                              setStartDate(date);
-                              setDOP(
-                                new Intl.DateTimeFormat("en-US", {
-                                  year: "numeric",
-                                  month: "2-digit",
-                                  day: "2-digit",
-                                }).format(date)
-                              );
-                            }}
-                            dateFormat="dd/MM/yyyy"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
 
                 <div class="form-group">
                   <div class="form-group internal">
@@ -178,7 +144,7 @@ function AdminProducts({ setTitle }) {
                       class="control-label col-md-2 col-md-offset-2"
                       for="id_title"
                     >
-                      Total
+                      Email
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
@@ -186,12 +152,12 @@ function AdminProducts({ setTitle }) {
                           <input
                             class="form-control"
                             id="id_first_name"
-                            placeholder="Tortal Stock Avilable"
-                            type="text"
+                            placeholder="Enter Email  "
+                            type="email"
                             required
-                            value={Total}
+                            value={email}
                             onChange={(e) => {
-                              setTotal(e.target.value);
+                              setEmail(e.target.value);
                             }}
                           ></input>
                         </div>
@@ -205,7 +171,7 @@ function AdminProducts({ setTitle }) {
                       class="control-label col-md-2 col-md-offset-2"
                       for="id_title"
                     >
-                      Original Cost Each
+                     Mobile
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
@@ -213,12 +179,12 @@ function AdminProducts({ setTitle }) {
                           <input
                             class="form-control"
                             id="id_first_name"
-                            placeholder="Original Price Each"
-                            type="text"
+                            placeholder=" Enter Mobile Number"
+                            type="number"
                             required
-                            value={OEC}
+                            value={mobile}
                             onChange={(e) => {
-                              setOEC(e.target.value);
+                              setMobile(e.target.value);
                             }}
                           ></input>
                         </div>
@@ -232,7 +198,7 @@ function AdminProducts({ setTitle }) {
                       class="control-label col-md-2 col-md-offset-2"
                       for="id_title"
                     >
-                      Selling Price Each
+                      City
                     </label>
                     <div class="col-md-8">
                       <div class="col-md-8 indent-small">
@@ -241,12 +207,12 @@ function AdminProducts({ setTitle }) {
                             class="form-control"
                             id="id_first_name"
                             placeholder="
-                            Selling Price Each"
-                            type="Number"
+                              Enter City"
+                            type="text"
                             required
-                            value={SPE}
+                            value={city}
                             onChange={(e) => {
-                              setSPE(e.target.value);
+                              setCity(e.target.value);
                             }}
                           ></input>
                         </div>
@@ -263,7 +229,7 @@ function AdminProducts({ setTitle }) {
                       type="button"
                       onClick={postDetails}
                     >
-                      Upload
+                      Add Technician
                     </button>
                   </div>
                 </div>
@@ -276,13 +242,13 @@ function AdminProducts({ setTitle }) {
                     <div class="sales-details">
                       <ul class="details">
                         <li class="topic">Name</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
+                        {Technicians.length !== 0
+                          ? Technicians.map((Technician) => {
                               return (
                                 <>
                                   <hr />
-                                  <li key={product._id}>
-                                    <a>{product.name}</a>
+                                  <li key={Technician._id}>
+                                    <a>{Technician.name}</a>
                                   </li>
                                 </>
                               );
@@ -290,14 +256,14 @@ function AdminProducts({ setTitle }) {
                           : ""}
                       </ul>
                       <ul class="details">
-                        <li class="topic">DOP</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
+                        <li class="topic">City</li>
+                        {Technicians.length !== 0
+                          ? Technicians.map((Technician) => {
                               return (
                                 <>
                                   <hr />
-                                  <li key={product._id}>
-                                    <a>{product.DOP}</a>
+                                  <li key={Technician._id}>
+                                    <a>{Technician.city}</a>
                                   </li>
                                 </>
                               );
@@ -305,14 +271,14 @@ function AdminProducts({ setTitle }) {
                           : ""}
                       </ul>
                       <ul class="details">
-                        <li class="topic">Avilable</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
+                        <li class="topic">Mobile</li>
+                        {Technicians.length !== 0
+                          ? Technicians.map((Technician) => {
                               return (
                                 <>
                                   <hr />
-                                  <li key={product._id}>
-                                    <a>{product.Available}</a>
+                                  <li key={Technician._id}>
+                                    <a>{Technician.mobile}</a>
                                   </li>
                                 </>
                               );
@@ -320,54 +286,24 @@ function AdminProducts({ setTitle }) {
                           : ""}
                       </ul>
                       <ul class="details">
-                        <li class="topic">Total</li>
-                        {products.length !== 0
-                          ? products.map((products) => {
+                        <li class="topic">Email</li>
+                        {Technicians.length !== 0
+                          ? Technicians.map((Technician) => {
                               return (
                                 <>
                                   <hr />
-                                  <li key={products._id}>
-                                    <a>{products.Total}</a>
+                                  <li key={Technician._id}>
+                                    <a>{Technician.email}</a>
                                   </li>
                                 </>
                               );
                             })
                           : ""}
-                      </ul>
-                      <ul class="details">
-                        <li class="topic">OC</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
-                              return (
-                                <>
-                                  <hr />
-                                  <li key={product._id}>
-                                    <a>{product.OCE}</a>
-                                  </li>
-                                </>
-                              );
-                            })
-                          : ""}
-                      </ul>
-                      <ul class="details">
-                        <li class="topic">SP</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
-                              return (
-                                <>
-                                  <hr />
-                                  <li key={products._id}>
-                                    <a>{product.SPE}</a>
-                                  </li>
-                                </>
-                              );
-                            })
-                          : ""}
-                      </ul>
+                      </ul>  
                       <ul class="details">
                         <li class="topic">Action</li>
-                        {products.length !== 0
-                          ? products.map((product) => {
+                        {Technicians.length !== 0
+                          ? Technicians.map((Technician) => {
                               return (
                                 <>
                                   <hr />
@@ -380,7 +316,7 @@ function AdminProducts({ setTitle }) {
                                     <button
                                       className=" Product-button "
                                       type="button"
-                                      onClick={()=>{handleDelete(product._id)}}
+                                      onClick={()=>{handleDelete(Technician._id)}}
                                       
                                     >
                                       <Delete />
@@ -390,12 +326,6 @@ function AdminProducts({ setTitle }) {
                                       type="button"
                                     >
                                       <ViewComponent />
-                                    </button>
-                                    <button
-                                      className=" Product-button "
-                                      type="button"
-                                    >
-                                      <HandShake />
                                     </button>
                                   </div>
                                 </>
@@ -415,4 +345,4 @@ function AdminProducts({ setTitle }) {
   );
 }
 
-export default AdminProducts;
+export default AdminTechnicians;

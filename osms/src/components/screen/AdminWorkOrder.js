@@ -1,174 +1,100 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify"; 
-
+import { toast } from "react-toastify";
 
 function AdminWorkOrder() {
-    const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    // Toast functions
-    const notifyA = (msg) => toast.error(msg);
-  
-    useEffect(() => {
-      fetch("http://localhost:5000/api/admin/workdone", {
-        method: "get"
-      })
-        .then((res) => res.json())
-        .then((users) => {
-          if (users.error) {
-            notifyA(users.error);
-          } else {
-            setUsers(users);
-          }
-        });
-    }, []);
-  
-    return (
-      <div>
-        <div class="sales-boxes" style={{marginRight:"5%"}}>
-          <div class="recent-sales box">
-            <div class="title">List of Requesters</div>
-            <div class="sales-details">
-              <ul class="details">
-                <li class="topic">Name</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.name}</a>
+  // Toast functions
+  const notifyA = (msg) => toast.error(msg);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/admin/workdone", {
+      method: "get",
+    })
+      .then((res) => res.json())
+      .then((users) => {
+        if (users.error) {
+          notifyA(users.error);
+        } else {
+          setUsers(users);
+        }
+      });
+  }, []);
+
+  return (
+    <div>
+      <div class="sales-boxes" style={{ marginRight: "5%" }}>
+        <div class="recent-sales box">
+          <div class="title">List of Request Done </div>
+          <div className="container">
+            <div className="panel-body">
+              <form className="form-horizontal" role="form">
+                <ul className="card-list">
+                  {users.length !== 0
+                    ? users.map((user) => {
+                        return (
+                          <li className="card"style={{width:"260px"}} >
+                            <a className="card-description" >
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">Name:</p>
+                                <h2>{user.name}</h2>
+                              </div>
+                              <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                  Request info:
+                                </p>
+                                <h2>{user.reqInfo}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">Address:</p>
+                                <h2>{user.address1}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                 Ctiy:
+                                </p>
+                                <h2>{user.city}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                 Mobile Number
+                                </p>
+                                <h2>{user.mobile}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                Technician :
+                                </p>
+                                <h2>{user.technicianAlloc}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                Date of Allocation :
+                                </p>
+                                <h2>{user.DateAlloc}</h2>
+                              </div>  <hr/>
+                              <div style={{ display: "flex" }}>
+                                <p className =" heading-of-details ">
+                                  Action:
+                                </p>
+                                <button type="button">E</button>
+                                <button type="button">E</button>
+                                <button type="button">E</button>
+                              </div>
+                            </a>
                           </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Request Info</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.reqInfo}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Address</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.address1}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">City</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.city}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">mobile</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.mobile}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Address</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.address1}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Technician</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.technicianAlloc}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Date of Allocation</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <li key={user._id}>
-                            <a>{user.DateAlloc}</a>
-                          </li>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
-              <ul class="details">
-                <li class="topic">Action</li>
-                {users.length !== 0
-                  ? users.map((user) => {
-                      return (
-                        <>
-                          <hr />
-                          <div style={{display:'flex',justifyContent:"sapce-around"}}>
-                          <button type="button">E</button>
-                          <button type="button">E</button>
-                          <button type="button">E</button>
-                          </div>
-                        </>
-                      );
-                    })
-                  : ""}
-              </ul>
+                        );
+                      })
+                    : ""}
+                </ul>
+              </form>
             </div>
           </div>
+          <div class="sales-details"></div>
         </div>
       </div>
-    );
-  }
-export default AdminWorkOrder
+    </div>
+  );
+}
+export default AdminWorkOrder;

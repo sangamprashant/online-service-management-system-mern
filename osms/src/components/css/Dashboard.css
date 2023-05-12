@@ -444,11 +444,20 @@ nav .profile-details i{
   margin: 0px 3px ;
 }
 
-
+.details-to-arrange {
+  width: fit-content;
+}
 
 @media print {
   .no-print {
     display: none;
+  }
+  .home-section nav .sidebar-button{
+    display: none;;
+  }
+  .sidebar{
+    margin-left: 0px;
+    width: 0px;
   }
   @page {
     size: auto;
@@ -458,6 +467,7 @@ nav .profile-details i{
   .sidebar,.logo-details,.nav-links {
       display: none;
     }
+    
     #print-section {
       display: block !important;
     }

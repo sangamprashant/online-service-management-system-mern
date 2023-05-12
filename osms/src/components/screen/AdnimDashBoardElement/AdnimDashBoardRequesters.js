@@ -27,7 +27,7 @@ function AdminDashBoardRequesters() {
         <div class="recent-sales box">
           <div class="title">List of Requesters</div>
           <div class="sales-details">
-            <ul class="details">
+            <ul class="details" style={{marginRight:"20px"}}>
               <li class="topic">Requester ID</li>
               {users.length !== 0
                 ? users.map((user) => {
@@ -42,7 +42,7 @@ function AdminDashBoardRequesters() {
                   })
                 : ""}
             </ul>
-            <ul class="details">
+            <ul class="details"style={{marginRight:"20px"}}>
               <li class="topic">Name</li>
               {users.length !== 0
                 ? users.map((user) => {

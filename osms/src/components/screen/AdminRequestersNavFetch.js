@@ -101,7 +101,7 @@ function AdminRequestersNavFetch() {
           </div>
           <hr />
           {!model ? (
-            <div class="sales-details">
+            <div class="sales-details" >
               <ul class="details">
                 <li class="topic">Email</li>
                 {users.length !== 0

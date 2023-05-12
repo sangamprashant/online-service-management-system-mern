@@ -249,5 +249,32 @@ router.get("/api/requests/:requestId", (req, res) => {
       return res.status(500).json({ error: "Internal server error" });
     });
 });
+//to allocate technician and date to serve 
+router.put("/api/requests/:requestId", (req, res) => {
+  const { technicianAlloc, DateAlloc } = req.body;
+  if (!technicianAlloc|| !DateAlloc) {
+    return res.status(404).json({ error: "Please Enter Technician and Date " });
+  }
+  OSMSREQUEST.findByIdAndUpdate(
+    req.params.requestId,
+    {
+      technicianAlloc,
+      DateAlloc,
+    },
+    { new: true }
+  )
+    .populate("requestedBy", "_id name email")
+    .then((request) => {
+      if (!request) {
+        return res.status(404).json({ error: "Request not found" });
+      }
+      console.log(request);
+      res.json(request);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
 
 module.exports = router;
