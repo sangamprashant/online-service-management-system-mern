@@ -49,18 +49,6 @@ function Navbr({ login,isAdmin }) {
               </Link>
             </li>
             <li>
-              <a href="#">
-                <i class="bx bx-cog"></i>
-                <span class="links_name">Sell Report</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="bx bx-cog"></i>
-                <span class="links_name">Work Report</span>
-              </a>
-            </li>
-            <li>
               <Link to={`/admin/${loggedUser.name}/changepassword`}>
                 <i class="bx bx-cog"></i>
                 <span class="links_name">Change Password</span>

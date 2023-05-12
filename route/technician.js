@@ -18,7 +18,7 @@ router.post("/api/admin/add/technicians", async (req, res) => {
 
     // Save the new document to the database
     await technician.save();
-console.log(technician)
+
     // Return a success response with the new document
     res.status(201).json({ message: "Technician created", technician });
   } catch (err) {
@@ -30,7 +30,7 @@ console.log(technician)
 
 //get all technician
 router.get("/api/admin/get/technicians", (req, res) => {
-    OSMSTECHNECIAN.find()
+  OSMSTECHNECIAN.find()
     .then((technicians) => {
       res.json(technicians);
     })
@@ -41,20 +41,63 @@ router.get("/api/admin/get/technicians", (req, res) => {
 });
 
 //to delete a technician
-router.delete('/api/admin/delete/technicians/:technicianId', (req, res) => {
-    const { technicianId } = req.params;
-    
-    OSMSTECHNECIAN.findByIdAndDelete(technicianId)
-      .then((deletedTechnician) => {
-        if (!deletedTechnician) {
-          return res.status(404).json({ error: 'Technician not found' });
-        }
-        return res.json({ message: 'Technician deleted successfully' });
-      })
-      .catch((err) => {
-        console.error(err);
-        return res.status(500).json({ error: 'Internal server error' });
-      });
-  }); 
+router.delete("/api/admin/delete/technicians/:technicianId", (req, res) => {
+  const { technicianId } = req.params;
 
+  OSMSTECHNECIAN.findByIdAndDelete(technicianId)
+    .then((deletedTechnician) => {
+      if (!deletedTechnician) {
+        return res.status(404).json({ error: "Technician not found" });
+      }
+      return res.json({ message: "Technician deleted successfully" });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
+
+//Route to get techniciad selected
+router.get("/api/admin/get/one/technician/:technicianId", (req, res) => {
+  const technicianId = req.params.technicianId;
+
+  OSMSTECHNECIAN.findById(technicianId)
+    .then((technician) => {
+      if (!technician) {
+        return res.status(404).json({ error: "Technician not found" });
+      }
+      res.json(technician);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
+// Route to edit a technician's details
+router.put("/api/admin/edit/technicians/:technicianId", (req, res) => {
+  const { name, email, city, mobile } = req.body;
+  if (!name || !email || !city || !mobile) {
+    return res.status(400).json({ error: "Please fill all fields" });
+  }
+  OSMSTECHNECIAN.findByIdAndUpdate(
+    req.params.technicianId,
+    {
+      name,
+      email,
+      city,
+      mobile,
+    },
+    { new: true }
+  )
+    .then((technician) => {
+      if (!technician) {
+        return res.status(404).json({ error: "Technician not found" });
+      }
+      res.json({ message: "Technician Updated" });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json({ error: "Internal server error" });
+    });
+});
 module.exports = router;
