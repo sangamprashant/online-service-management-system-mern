@@ -441,7 +441,7 @@
     cursor: pointer;
     width: 100%;
     border: none;
-    background: #3e00e9;
+    background: #0A2558;
     color: #FFF;
     margin: 0 0 5px;
     padding: 10px;
@@ -461,6 +461,9 @@
   
   .copyright {
     text-align: center;
+  }
+  .copyright >a{
+    color: #0A2558;
   }
   
   #contact input:focus,
