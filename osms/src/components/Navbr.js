@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "./img/logo.png"
 
 function Navbr({ login,isAdmin }) {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ function Navbr({ login,isAdmin }) {
   return (
     <div>
       <div class="logo-details no-print">
-        <i class="bx bxl-c-plus-plus"></i>
+      <img style={{width:"30px",marginLeft:"30px",marginRight:'10px'}} src={logo} alt=""/>
         <span class="logo_name">OSMS</span>
       </div>
       <ul class="nav-links no-print">{loginStatus()}</ul>

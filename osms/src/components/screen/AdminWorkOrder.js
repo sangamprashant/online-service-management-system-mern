@@ -74,14 +74,7 @@ function AdminWorkOrder() {
                                 </p>
                                 <h2>{user.DateAlloc}</h2>
                               </div>  <hr/>
-                              <div style={{ display: "flex" }}>
-                                <p className =" heading-of-details ">
-                                  Action:
-                                </p>
-                                <button type="button">E</button>
-                                <button type="button">E</button>
-                                <button type="button">E</button>
-                              </div>
+                             
                             </a>
                           </li>
                         );

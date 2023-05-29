@@ -18,82 +18,38 @@ function Home({ setTitle }) {
           <button>Subscribe</button>
         </div>
       </div>
-      <section className="servicecontainer">
-        <canvas class="orb-canvas"></canvas>
-
-        <div class="overlay">
-          <div class="overlay__inner">
-            <h1 class="overlay__title">
-              Hey, would you like to learn how to create a
-              <span class="text-gradient">generative</span> UI just like this?
-            </h1>
-
-            <p class="overlay__description">
-              In this tutorial we will be creating a generative “orb” animation
-              using pixi.js, picking some lovely random colors and pulling it
-              all together in a nice frosty UI.
-              <strong>We're gonna talk accessibility, too.</strong>
-            </p>
-
-            <div class="overlay__btns">
-              <button class="overlay__btn overlay__btn--transparent">
-                <a
-                  href="https://georgefrancis.dev/writing/create-a-generative-landing-page-and-webgl-powered-background/"
-                  target="_blank"
-                >
-                  View Tutorial
-                </a>
-              </button>
-
-              <button class="overlay__btn overlay__btn--colors">
-                <span>Randomise Colors</span>
-                <span class="overlay__btn-emoji">🎨</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+ 
       <section className="service-section">
         <h3 className="service-title">Our Services</h3>
         <p class="section-lead">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          This is a Online Service Management System Wher you can tell you problem relate to hardware and Software And we addign workers to solve your problems.
         </p>
         <div class="services-grid">
           <div class="service service1">
             <i class="ti-bar-chart"></i>
-            <h4>Wealth Management</h4>
+            <h4>Account Management</h4>
             <p>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Admin  control to manage your Account,  Quick and Eassy access.
             </p>
-            <a href="#" class="cta">
-              Read More <span class="ti-angle-right"></span>
-            </a>
+         
           </div>
 
           <div class="service service2">
             <i class="ti-light-bulb"></i>
-            <h4>Financial Planning</h4>
+            <h4> Live Customer Support </h4>
             <p>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              24/7 customer suport under you finger tips to meet your requirements.
             </p>
-            <a href="#" class="cta">
-              Read More <span class="ti-angle-right"></span>{" "}
-            </a>
+       
           </div>
 
           <div class="service service3">
             <i class="ti-money"></i>
-            <h4>Investment Banking</h4>
+            <h4>Online Store</h4>
             <p>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Interaget with online store to add and sell product to customers.
             </p>
-            <a href="#" class="cta">
-              Read more <span class="ti-angle-right"></span>
-            </a>
+          
           </div>
         </div>
       </section>
