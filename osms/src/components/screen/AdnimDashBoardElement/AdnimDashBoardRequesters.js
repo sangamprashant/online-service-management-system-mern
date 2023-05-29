@@ -8,7 +8,7 @@ function AdminDashBoardRequesters() {
   const notifyA = (msg) => toast.error(msg);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/allusers", {
+    fetch("/api/admin/allusers", {
       method: "get"
     })
       .then((res) => res.json())

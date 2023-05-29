@@ -11,7 +11,7 @@ function UserProfile({ setTitle }) {
     setTitle("User Profile");
   });
   const postDetails = () => {
-    fetch("http://localhost:5000/api/user/name", {
+    fetch("/api/user/name", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

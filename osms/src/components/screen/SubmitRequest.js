@@ -23,7 +23,7 @@ function SubmitRequest({ setTitle }) {
     setTitle("Submit Request");
   });
   const postDetails = () => {
-    fetch("http://localhost:5000/api/user/request/make", {
+    fetch("/api/user/request/make", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

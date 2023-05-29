@@ -13,10 +13,6 @@ function Home({ setTitle }) {
       <div class="center">
         <div class="title">Online Service</div>
         <div class="sub_title">Management System</div>
-        <div class="btns">
-          <button>Learn More</button>
-          <button>Subscribe</button>
-        </div>
       </div>
  
       <section className="service-section">

@@ -23,7 +23,7 @@ function ServiceStatus({ setTitle }) {
     setConfirmedStatus(true);
   };
   useEffect(() => {
-    fetch("http://localhost:5000/api/requests/made/history", {
+    fetch("/api/requests/made/history", {
       method: "get",
       headers: {
         "Content-Type": "application/json",

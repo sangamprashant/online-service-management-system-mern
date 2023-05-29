@@ -19,7 +19,7 @@ function AdminRequestersNavFetch() {
 
   const handleDelete = (userID) => {
     if (!model) {
-      fetch(`http://localhost:5000/api/user/delete/${userID}`, {
+      fetch(`/api/user/delete/${userID}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function AdminRequestersNavFetch() {
   };
   //add user
   const postDetails = () => {
-    fetch("http://localhost:5000/api/admin/user/add", {
+    fetch("/api/admin/user/add", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ function AdminRequestersNavFetch() {
 
   useEffect(() => {
     if (!model) {
-      fetch("http://localhost:5000/api/admin/allusers", {
+      fetch("/api/admin/allusers", {
         method: "get",
       })
         .then((res) => res.json())

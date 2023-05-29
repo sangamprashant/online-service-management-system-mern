@@ -8,7 +8,7 @@ function AdminWorkOrder() {
   const notifyA = (msg) => toast.error(msg);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/workdone", {
+    fetch("/api/admin/workdone", {
       method: "get",
     })
       .then((res) => res.json())

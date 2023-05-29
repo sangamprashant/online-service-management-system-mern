@@ -22,7 +22,7 @@ function SignUp({ setTitle }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Sending data to server
-    fetch(`http://localhost:5000/api/${type}/signup`, {
+    fetch(`/api/${type}/signup`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

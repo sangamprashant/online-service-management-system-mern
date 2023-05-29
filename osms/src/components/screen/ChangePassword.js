@@ -17,7 +17,7 @@ function ChangePassword({ setTitle }) {
     setTitle("Change Password");
   });
   const postDetails = () => {
-    fetch(`http://localhost:5000/api/${type}/password`, {
+    fetch(`/api/${type}/password`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",

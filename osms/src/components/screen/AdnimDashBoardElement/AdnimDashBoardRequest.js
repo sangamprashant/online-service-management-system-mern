@@ -7,7 +7,7 @@ function AdnimDashBoardRequest() {
   const notifyA = (msg) => toast.error(msg);
 
   useEffect(() => {     
-    fetch("http://localhost:5000/api/admin/workCounts", {
+    fetch("/api/admin/workCounts", {
       method: "get",
     })
       .then((res) => res.json())

@@ -34,7 +34,7 @@ function AdminTechnicians({ setTitle }) {
   const handleUpdate = (techniciansId) => {
     if (!editModel) {
       fetch(
-        `http://localhost:5000/api/admin/get/one/technician/${techniciansId}`,
+        `/api/admin/get/one/technician/${techniciansId}`,
         {
           method: "get",
           headers: {
@@ -60,7 +60,7 @@ function AdminTechnicians({ setTitle }) {
   //edit the selected Technician
   const postEditedDetails = () => {
     fetch(
-      `http://localhost:5000/api/admin/edit/technicians/${TechnicianSelectedId}`,
+      `/api/admin/edit/technicians/${TechnicianSelectedId}`,
       {
         method: "put",
         headers: {
@@ -88,7 +88,7 @@ function AdminTechnicians({ setTitle }) {
   const handleDelete = (techniciansId) => {
     if (!model) {
       fetch(
-        `http://localhost:5000/api/admin/delete/technicians/${techniciansId}`,
+        `/api/admin/delete/technicians/${techniciansId}`,
         {
           method: "delete",
           headers: {
@@ -109,7 +109,7 @@ function AdminTechnicians({ setTitle }) {
   };
 
   const postDetails = () => {
-    fetch("http://localhost:5000/api/admin/add/technicians", {
+    fetch("/api/admin/add/technicians", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -135,7 +135,7 @@ function AdminTechnicians({ setTitle }) {
   //get data fron server
   useEffect(() => {
     if (!model) {
-      fetch("http://localhost:5000/api/admin/get/technicians", {
+      fetch("/api/admin/get/technicians", {
         method: "get",
       })
         .then((res) => res.json())

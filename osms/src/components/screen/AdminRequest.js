@@ -27,7 +27,7 @@ function AdminRequest({ setTitle }) {
   //to get the clicked request
   const handelComponentClickToUpdate = (requestId) => {
     setModel(false);
-    fetch(`http://localhost:5000/api/requests/${requestId}`, {
+    fetch(`/api/requests/${requestId}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function AdminRequest({ setTitle }) {
 
   //to update the opened request
   const postDetails = () => {
-    fetch(`http://localhost:5000/api/requests/${openById}`, {
+    fetch(`/api/requests/${openById}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ function AdminRequest({ setTitle }) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/requests/unassigned", {
+    fetch("/api/admin/requests/unassigned", {
       method: "get",
       headers: {
         "Content-Type": "application/json",

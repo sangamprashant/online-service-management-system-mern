@@ -28,7 +28,7 @@ function AdminProducts({ setTitle }) {
  
   const handleDelete = (productId) => {
     if(!model){
-      fetch(`http://localhost:5000/api/products/${productId}`, {
+      fetch(`/api/products/${productId}`, {
         method: "delete",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function AdminProducts({ setTitle }) {
   };
 
   const postDetails = () => {
-    fetch("http://localhost:5000/api/add/products", {
+    fetch("/api/add/products", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ function AdminProducts({ setTitle }) {
   //get data fron server
   useEffect(() => {
     if (!model) {
-      fetch("http://localhost:5000/api/admin/products", {
+      fetch("/api/admin/products", {
         method: "get",
       })
         .then((res) => res.json())
